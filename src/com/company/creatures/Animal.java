@@ -1,11 +1,13 @@
-package com.company;
+package com.company.creatures;
 
-public class Animal {
+import com.company.Saleable;
+
+public abstract class Animal implements Saleable {
     final static Double DEFAULT_CAT_WEIGHT = 2.0;
     public static final double DEFAULT_DOG_WEIGHT = 10.0;
     final String species;
     Double weight;
-    String name;
+    public String name;
     Boolean isAlive;
     Boolean feed;
 
@@ -22,6 +24,11 @@ public class Animal {
         }
 
     }
+
+    public String getSpecies() { return species; }
+
+    public Double getWeight() { return weight; }
+
     void feed() {
         if (this.isAlive) {
             this.weight += 1;
@@ -30,6 +37,8 @@ public class Animal {
             System.out.println("too late, sorry");
         }
     }
+    abstract void test();
+
     void takeForAWalk() {
         if (this.isAlive) {
             this.weight -= 1;
@@ -41,5 +50,10 @@ public class Animal {
             System.out.println("POLICE HALO THERE IS SOME DEAD DOG!");
         }
         }
+
+    @Override
+    public void sale(Human seller, Human buyer, Double price) {
+        System.out.println("już zaraz to zrobimy");
     }
+}
 

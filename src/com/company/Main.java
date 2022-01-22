@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.creatures.Pet;
 import com.company.devices.Car;
 import com.company.devices.Phone;
 
@@ -18,7 +19,7 @@ public class Main {
         System.out.print(sonyA.getRamSize());
 
         Human me = new Human();
-        System.out.println(me.getSalary());
+        System.out.println(me.getSalary(600.00));
 
         me.getSalary(600.00);
 
@@ -26,6 +27,17 @@ public class Main {
         me.takeForAWalk();
         System.out.println(me.species);
         System.out.println(me.weight);
+        System.out.println(me.firstName);
+
+        System.out.println(fiat.getAge());
+
+        Animal cat = new Pet("felis");
+
+        Human brotherInLaw = new Human();
+        brotherInLaw.cash = 10000.0;
+        me.car = fiat;
+
+        fiat.sale(me, brotherInLaw, 8000.0);
     }
 
 }
