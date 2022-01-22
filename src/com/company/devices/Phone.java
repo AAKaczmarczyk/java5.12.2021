@@ -1,7 +1,12 @@
 package com.company.devices;
 
-public class Phone extends Device{
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
 
+public class Phone extends Device{
+    private static final String DEFAULT_APP_VERSION = "latest";
+    private static final String DEFAULT_APP_SERVER = "appstore.wsb.com";
     String user;
     String memory;
     Double screenWidth;
@@ -48,5 +53,36 @@ public class Phone extends Device{
 
     public boolean isTurnedOn() {
         return true;
+    }
+
+    public void installAnApp(List <String> appNames){
+        System.out.println("instalowanie aplikacji z listy");
+        for (String appName : appNames) {
+            this.installAnApp(appName);
+        }
+    }
+    public void installAnApp(String appName){
+        System.out.println("instalowanie aplikacji wg nazwy: " + appName);
+            this.installAnApp(appName, DEFAULT_APP_VERSION);
+    }
+    public void installAnApp(String appName, String version){
+        System.out.println("instalowanie aplikacji wg nazwy: " + appName + " i wersji: " + version);
+        this.installAnApp(appName, version, DEFAULT_APP_SERVER);
+
+    }
+    public void installAnApp(String appName, String version, String server){
+        System.out.println("instalowanie aplikacji wg nazwy: " + appName + " i wersji: " + version);
+
+        try {
+            URL url = new URL("https", server, 443, appName + "-" + version);
+        } catch (MalformedURLException e)  {
+            System.out.println("nie udało się zainstalować aplikacji " + appName);
+            e.printStackTrace();
+        }
+
+    }
+    public void installAnApp(URL url){
+        System.out.println("sprawdzanie adresu docelowego: ");
+
     }
 }
