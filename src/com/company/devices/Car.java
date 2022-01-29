@@ -1,6 +1,6 @@
 package com.company.devices;
 
-import com.company.Human;
+import com.company.creatures.Human;
 import com.company.Saleable;
 
 public class Car extends Device implements Saleable {
@@ -25,22 +25,24 @@ public class Car extends Device implements Saleable {
         return true;
     }
 
-    public String toString(){
-        return "Producent: "+ this.producer + ", model: ,"+ this.model + ", rok produkcji: " + this.yearOfProduction;
+    public String toString() {
+        return "Producent: " + this.producer + ", model: ," + this.model + ", rok produkcji: " + this.yearOfProduction;
     }
-    public void sale(Human seller, Human buyer, Double price){
-        if(buyer.cash < price);{
-            System.out.println("sorry, nie masz kasy");
-        }else if (seller.car != this) {
-            System.out.println("sorry, ale nie masz samochodu");
-        }else {
-            seller.cash += price;
-            buyer.cash -= price;
-            seller.car = null;
-            buyer.car = this;
-            System.out.println("Udało się sprzedać autp za " + price + "pln");
-        }
+
+    public void sale(Human seller, Human buyer, Double price) {
+        if (buyer.cash < price) {
+                System.out.println("niestety, nie masz pieniędzy");
+            }
+             else if (seller.car != this) {
+                System.out.println("odmowa, nie masz samochodu");
+            } else {
+                seller.cash += price;
+                buyer.cash -= price;
+                seller.car = null;
+                buyer.car = this;
+                System.out.println("Udało się sprzedać auto za: " + price + "pln");
+            }
         }
 
 
-}
+    }

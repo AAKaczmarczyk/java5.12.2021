@@ -5,6 +5,7 @@ import com.company.devices.Phone;
 
 public class Human extends Animal{
 
+    public static final Double DEFAULT_WEIGHT = 1.0;
     String firstName;
     String lastName;
     private Double salary;
@@ -40,4 +41,13 @@ public class Human extends Animal{
         this.salary = salary;
     }
 
+    @Override
+    protected void test() {
+
+    }
+
+    @Override
+    public void feed() {
+
+    }
 }

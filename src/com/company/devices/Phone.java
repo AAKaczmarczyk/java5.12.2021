@@ -12,6 +12,7 @@ public class Phone extends Device{
     Double screenWidth;
     private final Integer ramSize;
 
+
     public Phone(String producer, String model, Integer yearOfProduction, Integer ramSize, String colour) {
         super(producer, model, yearOfProduction);
         this.ramSize = ramSize;
@@ -24,6 +25,7 @@ public class Phone extends Device{
         this.memory = memory;
         this.screenWidth = screenWidth;
         this.ramSize = ramSize;
+
     }
     public String getRamSize(){
         return this.ramSize + "GB";
@@ -41,6 +43,7 @@ public class Phone extends Device{
     }
 
 
+    @Override
     public void turnOn() {
         System.out.println("wciskam guzik");
         System.out.println("czekam");
@@ -52,6 +55,7 @@ public class Phone extends Device{
 
 
     public boolean isTurnedOn() {
+
         return true;
     }
 

@@ -2,9 +2,11 @@ package com.company.creatures;
 
 import com.company.Saleable;
 
-public abstract class Animal implements Saleable {
+public abstract class Animal implements Saleable, Feedable {
     final static Double DEFAULT_CAT_WEIGHT = 2.0;
     public static final double DEFAULT_DOG_WEIGHT = 10.0;
+    private static final Double DEFAULT_WEIGHT = 1.0;
+    private static final Double DEFAULT_FOOD_WEIGHT = 1.0;
     final String species;
     Double weight;
     public String name;
@@ -18,9 +20,9 @@ public abstract class Animal implements Saleable {
             this.weight = DEFAULT_DOG_WEIGHT;
 
         } else if (this.species.equals("felis")) {
-            this.weight = 2.0;
+            this.weight = DEFAULT_CAT_WEIGHT;
         } else {
-            this.weight = 1.0;
+            this.weight = DEFAULT_WEIGHT;
         }
 
     }
@@ -29,17 +31,23 @@ public abstract class Animal implements Saleable {
 
     public Double getWeight() { return weight; }
 
-    void feed() {
+    public String getName() { return name; }
+
+    public void feed() {
+        this.feed(DEFAULT_FOOD_WEIGHT);
+    }
+
+    public void feed(Double foodWeight) {
         if (this.isAlive) {
-            this.weight += 1;
+            this.weight += foodWeight;
             System.out.println("thx for food bro");
         } else {
             System.out.println("too late, sorry");
         }
     }
-    abstract void test();
+    protected abstract void test();
 
-    void takeForAWalk() {
+    public void takeForAWalk() {
         if (this.isAlive) {
             this.weight -= 1;
             System.out.println("nice walk :D");
@@ -55,5 +63,6 @@ public abstract class Animal implements Saleable {
     public void sale(Human seller, Human buyer, Double price) {
         System.out.println("już zaraz to zrobimy");
     }
+
 }
 
