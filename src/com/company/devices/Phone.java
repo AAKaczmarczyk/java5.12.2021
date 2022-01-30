@@ -5,13 +5,15 @@ import java.net.URL;
 import java.util.List;
 
 public class Phone extends Device{
-    private static final String DEFAULT_APP_VERSION = "latest";
     private static final String DEFAULT_APP_SERVER = "appstore.wsb.com";
+    private static final String DEFAULT_APP_PROTOCOL = "https://";
+    private static final String DEFAULT_APP_VERSION = "latest version";
+
     String user;
     String memory;
     Double screenWidth;
     private final Integer ramSize;
-
+    private List<String> appNames;
 
     public Phone(String producer, String model, Integer yearOfProduction, Integer ramSize, String colour) {
         super(producer, model, yearOfProduction);
@@ -59,23 +61,23 @@ public class Phone extends Device{
         return true;
     }
 
-    public void installAnApp(List <String> appNames){
+    public void installAnApp(List<String> appNames){
         System.out.println("instalowanie aplikacji z listy");
         for (String appName : appNames) {
-            this.installAnApp(appName);
+            this.installAnApp(appNames);
         }
     }
-    public void installAnApp(String appName){
+    public void installAnApp(String name, String appName){
         System.out.println("instalowanie aplikacji wg nazwy: " + appName);
             this.installAnApp(appName, DEFAULT_APP_VERSION);
     }
-    public void installAnApp(String appName, String version){
+    public void installAnApp(String appName, String version,String server){
         System.out.println("instalowanie aplikacji wg nazwy: " + appName + " i wersji: " + version);
         this.installAnApp(appName, version, DEFAULT_APP_SERVER);
 
     }
-    public void installAnApp(String appName, String version, String server){
-        System.out.println("instalowanie aplikacji wg nazwy: " + appName + " i wersji: " + version);
+    public void installAnApp(String appName, String version, String server, String protocol){
+        System.out.println("instalowanie aplikacji wg nazwy: " + appName + " i wersji: " + version + "i protokołu: " + protocol);
 
         try {
             URL url = new URL("https", server, 443, appName + "-" + version);

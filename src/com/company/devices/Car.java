@@ -3,14 +3,23 @@ package com.company.devices;
 import com.company.creatures.Human;
 import com.company.Saleable;
 
-public class Car extends Device implements Saleable {
+public abstract class Car extends Device implements Saleable {
 
-    Double engineVolume;
-    String plates;
+    public Double engineVolume;
+    public String plates;
+    public Double value;
+    public Double charge;
+    public Double gas;
+    public Double petrol;
 
     public Car(String producer, String model, Integer yearOfProduction) {
         super(producer, model, yearOfProduction);
         this.engineVolume = 1.9;
+        this.plates = "GTC 5013";
+        this.value = 1000.0 ;
+        this.charge = 30.0;
+        this.gas = 0.0;
+        this.petrol = 0.0;
     }
 
     @Override
@@ -43,6 +52,7 @@ public class Car extends Device implements Saleable {
                 System.out.println("Udało się sprzedać auto za: " + price + "pln");
             }
         }
+    public abstract void Refuel();
 
 
     }
