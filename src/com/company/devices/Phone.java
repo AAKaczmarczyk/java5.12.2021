@@ -1,5 +1,7 @@
 package com.company.devices;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -8,12 +10,12 @@ public class Phone extends Device{
     private static final String DEFAULT_APP_SERVER = "appstore.wsb.com";
     private static final String DEFAULT_APP_PROTOCOL = "https://";
     private static final String DEFAULT_APP_VERSION = "latest version";
+    private List <String> appNames;
 
     String user;
     String memory;
     Double screenWidth;
     private final Integer ramSize;
-    private List<String> appNames;
 
     public Phone(String producer, String model, Integer yearOfProduction, Integer ramSize, String colour) {
         super(producer, model, yearOfProduction);
@@ -27,6 +29,7 @@ public class Phone extends Device{
         this.memory = memory;
         this.screenWidth = screenWidth;
         this.ramSize = ramSize;
+
 
     }
     public String getRamSize(){
@@ -61,15 +64,15 @@ public class Phone extends Device{
         return true;
     }
 
-    public void installAnApp(List<String> appNames){
+    public void installAnApp(@NotNull List<String> appNames){
         System.out.println("instalowanie aplikacji z listy");
         for (String appName : appNames) {
             this.installAnApp(appNames);
         }
     }
-    public void installAnApp(String name, String appName){
+    public void installAnApp(String appName){
         System.out.println("instalowanie aplikacji wg nazwy: " + appName);
-            this.installAnApp(appName, DEFAULT_APP_VERSION);
+            this.installAnApp(DEFAULT_APP_VERSION);
     }
     public void installAnApp(String appName, String version,String server){
         System.out.println("instalowanie aplikacji wg nazwy: " + appName + " i wersji: " + version);

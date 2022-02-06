@@ -1,9 +1,8 @@
 package com.company.devices;
 
 import com.company.creatures.Human;
-import com.company.Saleable;
 
-public abstract class Car extends Device implements Saleable {
+public abstract class Car extends Device{
 
     public Double engineVolume;
     public String plates;
@@ -37,21 +36,24 @@ public abstract class Car extends Device implements Saleable {
     public String toString() {
         return "Producent: " + this.producer + ", model: ," + this.model + ", rok produkcji: " + this.yearOfProduction;
     }
-
+    @Override
     public void sale(Human seller, Human buyer, Double price) {
         if (buyer.cash < price) {
-                System.out.println("niestety, nie masz pieniędzy");
-            }
-             else if (seller.car != this) {
-                System.out.println("odmowa, nie masz samochodu");
+                System.out.println(buyer + "niestety, nie masz pieniędzy.");
+            } else if (seller.hasCar(this)){
+                System.out.println(seller + "odmowa, nie masz samochodu.");
+            } else if(!buyer.hasFreeSpace()) {
+                System.out.println(buyer + "niestety ale nie masz już miejsca w garażu.");
             } else {
+
                 seller.cash += price;
                 buyer.cash -= price;
-                seller.car = null;
-                buyer.car = this;
-                System.out.println("Udało się sprzedać auto za: " + price + "pln");
+                seller.deleteCar(this);
+                buyer.addCar(this);
+                System.out.println(seller + "Udało się sprzedać auto za: " + price + "pln");
             }
         }
+
     public abstract void Refuel();
 
 
